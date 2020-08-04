@@ -1,5 +1,6 @@
 package org.cqframework.cql.cql2elm.model;
 
+import org.cqframework.cql.elm.visiting.Visitor;
 import org.hl7.elm.r1.Expression;
 
 // Note: This class is only used as a place-holder during resolution in a translator (or compiler...)
@@ -12,5 +13,10 @@ public class LibraryRef extends Expression {
 
     public void setLibraryName(String value) {
         libraryName = value;
+    }
+
+    @Override
+    public <R, E extends Throwable> R accept(Visitor<R, E> aVisitor) throws E {
+        return null;
     }
 }

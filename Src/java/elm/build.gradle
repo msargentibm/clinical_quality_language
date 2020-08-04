@@ -1,6 +1,10 @@
 // Most build configuration comes from the cql-all parent build!
 
 dependencies {
+    xjc group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.1'
+    xjc group:'com.massfords', name: 'jaxb-visitor', version: '2.8'
+
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.1'
     compile project(':model')
 }
 
@@ -9,7 +13,7 @@ generateSources {
 
     doLast {
         ant.xjc(destdir: xjc.destDir, schema: "${projectDir}/../../cql-lm/schema/elm/library.xsd") {
-            arg(line: "${xjc.args} -npa -XautoInheritance -XautoInheritance-xmlTypesExtend=org.cqframework.cql.elm.tracking.Trackable")
+            arg(line: "${xjc.args} -npa -XautoInheritance -XautoInheritance-xmlTypesExtend=org.cqframework.cql.elm.tracking.Trackable -Xvisitor -Xvisitor-package:org.cqframework.cql.elm.visiting")
         }
 
         ant.xjc(destdir: xjc.destDir, schema: "${projectDir}/../../cql-lm/schema/elm/cqlannotations.xsd") {
