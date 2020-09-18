@@ -395,4 +395,12 @@ public class BaseTest {
                 "</library>\n"));
         */
     }
+
+    @Test
+    public void testFHIRPathLiteralDecimalGreaterThanIntegerTrue() throws IOException {
+        CqlTranslator translator = TestUtils.runSemanticTest("fhir/r401/TestFHIRPathLiteralDecimalGreaterThanIntegerTrue.cql", 0);
+        TranslatedLibrary library = translator.getTranslatedLibrary();
+        ExpressionDef expressionDef = library.resolveExpressionRef("Test");
+        assertThat(expressionDef, notNullValue());
+    }
 }
